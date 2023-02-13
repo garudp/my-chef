@@ -1,0 +1,39 @@
+{
+  "id": "airflow.aws.stage",
+  "rabbitmq": {
+    "encrypted_data": "wbhLTHPIHwpX8k3JenwkQ5L5BzvlE70RFDdGNpDfk9kdFKdB7ViYlYCrbWGJ\nh3Y5\n",
+    "iv": "MLkGsgP7xfuphtVhW7o4Qw==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "celery": {
+    "encrypted_data": "0w/wUG0QH7Zi559g8Kdk/kwR6Q+ZXOyL8p8Ss6oz9aVEHc3+PzR8iX76sVjD\n/kyf\n",
+    "iv": "SdO4GrfbX2jEXokVMvB+pA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "airflow": {
+    "encrypted_data": "OsPjzs7/176r5mvlVrAjhEdmgP4uKils+gHOcTZjlqchUNI0PtRk+cTHW87F\nQkkf\n",
+    "iv": "cWekwDusPWgDKU12k3cj7w==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "fernet_key": {
+    "encrypted_data": "guz/K2f6EUkszljfqv3uTYdf5GmU8wFmZ1ekZDxiLO0nQfta2mdoNA0wBEhj\nPJXsDYh4UnXUFqt530O3iUOL5w==\n",
+    "iv": "kOlXl0OzPZaKhdgI7y684w==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "aws_email_passwd": {
+    "encrypted_data": "7+PCh1XdWtS9g2IX7Ob8Q7N9/Oz4Kqb4Tyws5ybOQ5K1D2lyf3YgFeT2448P\nrK17OQ86fIcLzTfDt2q3us4YdQ==\n",
+    "iv": "h/br/cWqmo9yJHdR5WqoMA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "aws_email_user": {
+    "encrypted_data": "X3OGh1IuopSFZRDixxSaQcjhOF6XEGtELhLb3dmcPkZGF5xUWt9+cpaDM0go\nRSFZ\n",
+    "iv": "BGe4/IasSmqtTb5c5D4CmQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

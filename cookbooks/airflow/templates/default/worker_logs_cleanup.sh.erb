@@ -1,0 +1,11 @@
+#!/bin/sh
+
+WORKER_LOGS_DIR="<%= node["airflow"]["config"]["core"]["base_log_folder"] %>"
+SCHEDULER_LOGS_DIR="<%= node["airflow"]["config"]["core"]["base_log_folder"] %>/scheduler"
+KEEP_DAYS=<%= node["airflow"]["worker"]["logs_keep_days"] %>
+
+find "${WORKER_LOGS_DIR}" \
+        -not -path "${SCHEDULER_LOGS_DIR}" \
+        -type f \
+        -mtime +"${KEEP_DAYS}" \
+        -print0 | xargs -0 -I @@ sh -c 'rm "@@" && logger "Stale airflow worker log @@ removed"'

@@ -1,0 +1,7 @@
+{
+  "id": "prod",
+  "rabbitmq": "IY2mc4j3ORhaVtl/3USsmbYiuyrgULKfdn1L5CP8a5k=\n",
+  "airflow": "mR/6NSJbqbw0oCb3HQlU9QBqxSXPj3dv/eoPRysUI1U=\n",
+  "celery": "AO4ETw1rrOq5MhhUToypcd9H2K++1E/1c1EXd1aRQK0=\n",
+  "fernet_key": "pRRnSBhgk7GtY5hDHCQZ+tfC9lcePp8sVoLNyXe+F4mBG69WwdQyK4irgSu1\ncP0d7gvcjQsBVIIRvrpXqMrmlg==\n"
+}

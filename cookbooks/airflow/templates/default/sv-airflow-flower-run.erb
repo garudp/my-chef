@@ -1,0 +1,13 @@
+#!/bin/bash
+
+exec 2>&1
+source <%= node["airflow"]["env_path"] %>
+
+execfile=<%= node["airflow"]["bin_path"]%>/flower
+user=<%= node["airflow"]["user"] %>
+group=<%= node["airflow"]["group"] %>
+pidfile=<%= node["airflow"]["pid_path"]%>/airflow-flower-webserver.pid
+port=<%= node["airflow"]["config"]["celery"]["flower_port"] %>
+broker=<%= @options["broker"] %>
+
+exec chpst -P -u $user:$group $execfile -b $broker -p $port --pid $pidfile

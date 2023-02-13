@@ -1,0 +1,27 @@
+{
+  "id": "test-110",
+  "rabbitmq": {
+    "encrypted_data": "OsJSySRmSNPrLO80VFJF8PZHBFj6DCJ3pkEvUn7qOQFHkjirmk2M/SJAujM3\ny9H9\n",
+    "iv": "tYxadF9JPTui/WiKTg7phg==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "airflow": {
+    "encrypted_data": "PPfNhDjurPpeAd9ERlnd78tol3NL7zQKfd2uCJbTOdOlXpqwiYCrmTw2SYdM\nxky1\n",
+    "iv": "WUJCcVO3K/+g6ViPRIJHyQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "celery": {
+    "encrypted_data": "O/dO4mA2xRxW/1jmulVmwouWxfAS+l0wRYzX3BfTUHQLdsdIgVMaqLPL4HG2\nFp/T\n",
+    "iv": "vAFU/mmZEOLv1xL0d860dA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "fernet_key": {
+    "encrypted_data": "yyMpr5lhSJMIrqoloq7Jt4Kp4G+K9guKhg47GGtD8p6gb2CZlR87akf6Src1\nO+59vMXXNVbTYgVY6wmTsYIxYA==\n",
+    "iv": "zhT9dpcTTVtv9P0ki2FyOw==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

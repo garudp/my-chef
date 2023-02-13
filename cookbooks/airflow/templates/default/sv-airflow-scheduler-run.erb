@@ -1,0 +1,11 @@
+#!/bin/bash
+
+exec 2>&1
+source <%= node["airflow"]["env_path"] %>
+
+execfile=<%= node["airflow"]["bin_path"]%>/airflow
+user=<%= node["airflow"]["user"] %>
+group=<%= node["airflow"]["group"] %>
+pidfile=<%= node["airflow"]["pid_path"]%>/airflow-scheduler.pid
+
+exec chpst -P -u $user:$group $execfile scheduler --pid $pidfile

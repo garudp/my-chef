@@ -1,0 +1,79 @@
+def policy(task):
+    from subprocess import call
+    from random import random
+    from datetime import datetime
+    import time
+    from airflow import models
+    from airflow import settings
+
+    def zabbix_sender(key, msg, host='<%= node["airflow"]["rabbitmq"]["db_host"] %>'):
+        config = '/etc/zabbix/zabbix_agentd.conf'
+        cmd = '/usr/bin/zabbix_sender'
+        call([cmd, '-s', host, '-c', config, '-k', key, '-o', msg])
+
+    def get_start_date(dag_id, execution_date):
+        session = settings.Session()
+        DR = models.DagRun
+        start_date = session.query(DR.start_date).filter(
+            DR.dag_id == dag_id,
+            DR.execution_date == execution_date,
+        ).first()
+        return start_date[0]
+
+    def get_tasks_stat(dag_id, execution_date):
+        session = settings.Session()
+        TI = models.TaskInstance
+        return session.query(TI.task_id, TI.state).filter(
+            TI.dag_id == dag_id,
+            TI.execution_date == execution_date).all()
+
+    def dag_running(all_tasks, started_tasks, cur_task):
+        for task, state in started_tasks:
+            if task == cur_task:
+                continue
+            if state == 'skipped':
+                return False
+            if state in ['failed', 'running', 'up_for_retry', 'queued', None]:
+                return True
+        return len(all_tasks) != len(started_tasks)
+
+    def zabbix_alert_success(ctx):
+        time.sleep( random()*5 )
+        started_tasks = get_tasks_stat(ctx['dag'].dag_id, ctx['execution_date'])
+
+        if ctx['dag'].is_subdag:
+            if dag_running(ctx['dag'].task_ids, started_tasks, ctx['task'].task_id):
+                return
+            else:
+                subdag_task_id = ctx['dag'].dag_id[len(ctx['dag'].parent_dag.dag_id)+1:]
+                started_tasks = get_tasks_stat(ctx['dag'].parent_dag.dag_id, ctx['execution_date'])
+                if dag_running(ctx['dag'].parent_dag.task_ids, started_tasks, subdag_task_id):
+                    return
+            
+            start_date = get_start_date(ctx['dag'].parent_dag.dag_id, ctx['execution_date'])
+            duration = ( datetime.now() - start_date ).seconds
+            dag_name = ctx['dag'].parent_dag.dag_id
+
+        else:
+            if dag_running(ctx['dag'].task_ids, started_tasks, ctx['task'].task_id):
+                return
+
+            duration = ( datetime.now() - ctx['dag_run'].start_date ).seconds
+            dag_name = ctx['dag'].dag_id
+
+        print "Send to zabbix from Task {}, Dag: {}, Execution_date: {}".format(ctx['task'].task_id, dag_name, ctx['execution_date']) # For debug
+        zabbix_sender('appmon[{},status]'.format(dag_name), '0')
+        zabbix_sender('appmon[{},duration]'.format(dag_name), str(duration))
+        zabbix_sender('appmon[{},timestamp]'.format(dag_name), str(int(time.time())))
+
+    def zabbix_alert_fail(ctx):
+        dag_name = ctx['dag'].dag_id
+        if ctx['dag'].is_subdag:
+            dag_name = ctx['dag'].parent_dag.dag_id
+        zabbix_sender('appmon[{},status]'.format(dag_name), '1')
+        zabbix_sender('appmon[{},timestamp]'.format(dag_name), str(int(time.time())))
+
+    task.on_failure_callback = zabbix_alert_fail
+    if task.task_type != 'SubDagOperator':  # The task is not subdag itself
+        task.on_success_callback = zabbix_alert_success
+

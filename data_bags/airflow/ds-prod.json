@@ -1,0 +1,31 @@
+{
+  "id": "ds-prod",
+  "rabbitmq": {
+    "encrypted_data": "KiLYrB6QKohA7d20BSJGp2M6vMD6I+KWgAk1sWuNAMVUVYQAR0k32I1theU=\n",
+    "iv": "f2lP0oX88KFgfSAJ\n",
+    "auth_tag": "PM5aBz8m6cZ5bG7cK86Yuw==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  },
+  "airflow": {
+    "encrypted_data": "+BAmc8qqppd5ivAbdub559Qbb67i6YABCSNQbGyRljt1U6JG0fVjYl5gFQQ=\n",
+    "iv": "jOxcgPa3geuD37Cx\n",
+    "auth_tag": "b23W7vQQc9++4pVmfLHb3g==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  },
+  "celery": {
+    "encrypted_data": "Odq0fLNrEgoRTm7sisSdE8KkIhmAAlBt37A1GxegRdFm6gaiQ5JVfpgk9hw=\n",
+    "iv": "Zlcdu/bKFVz5xyee\n",
+    "auth_tag": "/B8FQ0ZyYJxuudBO8pOIhA==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  },
+  "fernet_key": {
+    "encrypted_data": "rvVTKXDO0dwhiKb3fyBAgMgLrgHi8HNc480iSWeZN4JP8oXMsl5vH+gp8eQM\n2vteh6zFlOnX4/UbsarBV+Dl\n",
+    "iv": "dGS+5GcFmOBEw0DJ\n",
+    "auth_tag": "jMmAqLOf7JisQuZHemuGyQ==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  }
+}

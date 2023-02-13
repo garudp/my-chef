@@ -1,0 +1,7 @@
+{
+  "id": "dev",
+  "rabbitmq": "BUhG7hsXIHbrzWOx52uz/+ZrMC0aZO2zF3ijwSAYB/Q=\n",
+  "airflow": "snFe+LJjRybQHznbRzo8AOYZhSsLiDZDuEjyL/gcFsM=\n",
+  "celery": "4HDq47RYNyM3MLcVrDax2AMrFrCeV4QBG7YsTIZqC40=\n",
+  "fernet_key": "pRRnSBhgk7GtY5hDHCQZ+tfC9lcePp8sVoLNyXe+F4mBG69WwdQyK4irgSu1\ncP0d7gvcjQsBVIIRvrpXqMrmlg==\n"
+}

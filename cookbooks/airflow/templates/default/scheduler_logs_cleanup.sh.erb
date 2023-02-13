@@ -1,0 +1,21 @@
+#!/bin/sh
+
+SCHEDULER_LOGS_DIR="<%= node["airflow"]["config"]["core"]["base_log_folder"] %>/scheduler"
+KEEP_DAYS=<%= node["airflow"]["scheduler"]["logs_keep_days"] %>
+
+today=$(date +%F)
+cutoff_sec=$(date --date="${KEEP_DAYS} days ago" +%s)
+log_dirs=( $(ls ${SCHEDULER_LOGS_DIR} | egrep '^[0-9]{4}-[0-9]{2}-[0-9]{2}$') )
+
+for dir in ${log_dirs[@]}
+do
+    dir_age_sec=$(date --date="${dir}" +%s)
+    if [ "${dir_age_sec}" -lt "${cutoff_sec}" ]
+    then
+        echo "Will remove ${SCHEDULER_LOGS_DIR}/${dir}"
+        rm -rf ${SCHEDULER_LOGS_DIR}/${dir}
+    elif [ "${dir}" != "$today" ]
+    then
+        find ${SCHEDULER_LOGS_DIR}/${dir} -type f -name "*.log" -exec gzip {} \;
+    fi
+done

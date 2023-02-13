@@ -1,0 +1,6 @@
+export PATH=<%= node["airflow"]["bin_path"] %>:$PATH
+export AIRFLOW_HOME="<%= @config["core"]["airflow_home"] %>"
+export JAVA_HOME="<%= node["airflow"]["java_home"] %>"
+if [[ -f /etc/profile.d/hadoop_conf_dir.sh ]]; then
+  source /etc/profile.d/hadoop_conf_dir.sh
+fi

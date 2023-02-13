@@ -1,0 +1,15 @@
+---
+driver:
+  name: ec2
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: centos-8
+
+suites:
+  - name: default
+    run_list:
+    - recipe[starter::default]
+    attributes:

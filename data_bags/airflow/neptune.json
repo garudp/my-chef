@@ -1,0 +1,27 @@
+{
+  "id": "neptune",
+  "rabbitmq": {
+    "encrypted_data": "H1mUhEKBa3DCJgRVZG3eQsLwPPciJmP/AbboVJ1l1+A=\n",
+    "iv": "Hb9Gb1EGkY67+8k4GgT58w==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "airflow": {
+    "encrypted_data": "nNIn1Tbsw48J6r/3Ki36Itz4KoDXI+GIelyqpVoLPOc=\n",
+    "iv": "hLcI4FZv/j+52Dn9Rnl/6A==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "celery": {
+    "encrypted_data": "lUGdFAHwvnffXwWXgYasS66tEy0iEoA6l9FLgzDbZy8=\n",
+    "iv": "OOHfe5hm+jUGKIyVgULkug==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "fernet_key": {
+    "encrypted_data": "6fQFpL2cWOavct9Xc78w9Bhrn2+z5Zk+r7KrXMkY9o9pdKU/6jLng1aUjcuU\nx3S5W+HB2Yi2m8PzoX2c7SjE/w==\n",
+    "iv": "zmfT8iDTZLlQj12HAvgVNQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

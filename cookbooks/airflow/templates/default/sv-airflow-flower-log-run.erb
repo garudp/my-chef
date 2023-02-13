@@ -1,0 +1,5 @@
+#!/bin/bash
+
+exec 2>&1
+
+exec chpst -u logger svlogd <%= node["airflow"]["flower_log_path"] %>
